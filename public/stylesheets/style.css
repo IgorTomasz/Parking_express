@@ -1,0 +1,274 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: gainsboro;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+#popup-window {
+  position: fixed;
+  width: 30vw;
+  height: 25vh;
+  background: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  display: none;
+  transform: translate(-50%, -50%);
+}
+
+#close-button{
+  width: 5vw;
+  height: 3vh;
+  background: none;
+  border: none;
+  font-size: larger;
+  text-align: right;
+  cursor: pointer;
+}
+
+.popup-header{
+  height: 25%;
+}
+
+.popup-header>button{
+  float: right;
+}
+
+.popup-main{
+  height: 75%;
+}
+
+.header{
+  width: 100%;
+  height: 10vh;
+  background-color: gainsboro;
+}
+
+.header > img{
+  width: 5%;
+  float: right;
+}
+
+.header > h3{
+  float: right;
+}
+
+.site_content{
+  display: flex;
+}
+
+.footer{
+  width: 100%;
+  height: 5vh;
+}
+
+.site{
+  background-color: gainsboro;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar_button_open{
+  width: 5%;
+  height: 15%;
+  font-size: 45px;
+  float: left;
+  background: none;
+  border: none;
+}
+
+.w3-bar-item{
+  padding:8px 16px;
+  float:left;
+  width:82%;
+  height: 5%;
+  border:none;
+  display:block;
+  outline:0;
+  text-decoration: none;
+  background: gainsboro;
+  color: black;
+  text-align: center;
+  line-height: normal;
+}
+
+.w3-bar-item:hover{
+  background: #989599;
+}
+
+.sidebar_button_close{
+  width: 100%;
+  height: 5%;
+  background: none;
+  color: white;
+  text-align: center;
+  vertical-align: center;
+}
+
+.sidebar{
+  width: 10vw;
+  height: 100vh;
+  background-color: gainsboro;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 20;
+  margin-right: 10px;
+}
+
+
+.table{
+  width: 90%;
+  background-color: gainsboro;
+  justify-content: right;
+  margin-left: auto;
+  height: calc(100vh - 15vh);
+}
+
+.tg{
+  border: 2px solid black;
+  height: max-content;
+  width: 90vw;
+  text-align: center;
+}
+
+td{
+  border: 1px solid black;
+}
+
+.off{
+  visibility: hidden;
+  border: none;
+}
+
+.details{
+  position: absolute;
+  top: 0;
+  transform: translateY(-70%) scale(0);
+  transition: 0.5s;
+  transform-origin: left;
+  display: inline;
+  background: white;
+  z-index: 1;
+  min-width: max-content;
+  width: 100%;
+  height: 13vh;
+  padding: 1rem;
+  border: 1px solid black;
+  text-align: left;
+}
+
+.details > p {
+  line-height: 2;
+}
+
+.details > button {
+  text-align: right;
+  text-decoration: none;
+  color: black;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.details > a:visited {
+  color: black;
+}
+
+.onPio{
+  background-color: rgb(67, 118, 212);
+  width: 4%;
+  line-height: 400%;
+  position: relative;
+}
+
+.onPioUp{
+  background-color: rgb(67, 118, 212);
+  width: 4%;
+  line-height: 400%;
+  position: relative;
+}
+
+.onPoz{
+  background-color: rgb(67, 118, 212);
+  line-height: 400%;
+  width: 4%;
+  position: relative;
+}
+
+.onPozLeft{
+  background-color: rgb(67, 118, 212);
+  line-height: 400%;
+  width: 4%;
+  position: relative;
+}
+
+.onPio:hover span{
+  background-color: rgb(83, 83, 83);
+  transform: translateY(-100%) scale(1);
+
+}
+
+.onPioUp:hover span{
+  background-color: rgb(83, 83, 83);
+  transform: translateY(36%) scale(1);
+
+}
+
+.onPoz:hover span{
+  background-color: rgb(83, 83, 83);
+  transform: translateX(-118%) scale(1);
+}
+
+.onPozLeft:hover span{
+  background-color: rgb(83, 83, 83);
+  transform: translateX(11%) scale(1);
+}
+
+.onPio:hover{
+  background-color: rgb(83, 83, 83);
+}
+
+.onPioUp:hover{
+  background-color: rgb(83, 83, 83);
+}
+
+.onPoz:hover{
+  background-color: rgb(83, 83, 83);
+}
+
+.onPozLeft:hover{
+  background-color: rgb(83, 83, 83);
+}
+
+#loading-spinner {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

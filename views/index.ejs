@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <script>
+      let enableMouseEnter = true;
+
+      async function showIdOver(id){
+        if(enableMouseEnter){
+          let td = document.getElementById(id);
+        let span = td.querySelector('span');
+        
+          fetch('/showIdOver/'+id)
+        .then(response => response.text())
+        .then(data => {
+          span.innerHTML = data;
+        })
+        .catch(error => console.error('Error:', error));
+        
+        }
+      }
+
+
+
+      function sidebar_open(){
+        document.getElementById('sidebar').style.visibility='visible';
+      }
+
+      function sidebar_close(){
+        document.getElementById('sidebar').style.visibility='hidden';
+      }
+
+      async function openPopup(id){
+        let loadingSpinner = document.getElementById('loading-spinner');
+        enableMouseEnter = false;
+        let popupWindow = document.getElementById("popup-window");
+        let popup_main = document.getElementById('popup-main');
+        let site = document.getElementById('site');
+        let body = document.getElementById('web');
+        body.style.background = 'rgba(169, 169, 169, 0.8)';
+        site.style.opacity = 0.3;
+
+        popupWindow.style.display = "block";
+        loadingSpinner.style.display = 'block';
+
+      // Show the pop-up window when the link is clicked
+        
+      // Hide the pop-up window when the close button is clicked
+      
+      const data = await fetch('/showMoreInfo/'+id)
+        .then(response => response.text())
+        .catch(error => console.error('Error:', error));
+
+        loadingSpinner.style.display = 'none';
+        popup_main.innerHTML = data;
+       }
+
+      function closePopup(){
+        enableMouseEnter = true;
+        var popupWindow = document.getElementById("popup-window");
+        let site = document.getElementById('site');
+        site.style.opacity = 1;
+        popupWindow.style.display = "none";
+      }
+
+       
+    </script>
+<div id="web">
+<div id="popup-window">
+  <div class="popup-header">
+    <button id="close-button" onclick="closePopup()">✖</button>
+  </div>
+  <div id="popup-main">
+      <div id="loading-spinner">
+        <div class="spinner">
+
+        </div>
+      </div>
+  </div>
+</div>   
+  <div class="site" id="site">
+
+    
+
+    <div class="header">
+      <button class="sidebar_button_open" onclick="sidebar_open()">☰</button>
+      <img src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar">
+      <h3>Jan Kowalski</h3>
+    </div>
+    <div class="site_content">
+
+  <div class="sidebar" id="sidebar">
+    <button onclick="sidebar_close()" class="sidebar_button_close">Close ✖</button>
+    <br>
+    <a href="/" class="w3-bar-item">Strona główna</a>
+    <br>
+    <a href="/users" class="w3-bar-item">Użytkownicy</a>
+    <br>
+    <a href="#" class="w3-bar-item">Link 3</a>
+  </div>
+
+  <div class="table">
+  <table class="tg">
+    <tbody>
+    <tr>
+      <td class="off"></td>
+      <td class="onPioUp" onmouseenter="showIdOver(1)" id="1">1<span class="details">Detail in manner</span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(2)" id="2">2<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(3)" id="3">3<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(4)" id="4">4<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(5)" id="5">5<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(6)" id="6">6<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(7)" id="7">7<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(8)" id="8">8<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(9)" id="9">9<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(10)" id="10">10<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(11)" id="11">11<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(12)" id="12">12<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(13)" id="13">13<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(14)" id="14">14<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(15)" id="15">15<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(16)" id="16">16<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(17)" id="17">17<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(18)" id="18">18<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(19)" id="19">19<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(20)" id="20">20<span class="details"></span></td>
+      <td class="off"></td>
+    </tr>
+
+    <tr>
+      <td class="onPozLeft" onmouseenter="showIdOver(21)" id="21">21<span class="details">Detail in manner</span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPoz" onmouseenter="showIdOver(22)" id="22">22<span class="details"></span></td>
+    </tr>
+
+    <tr>
+      <td class="onPozLeft" onmouseenter="showIdOver(23)" id="23">23<span class="details">Detail in manner</span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPoz" onmouseenter="showIdOver(24)" id="24">24<span class="details">Detail in manner</span></td>
+    </tr>
+
+    <tr>
+      <td class="onPozLeft" onmouseenter="showIdOver(25)" id="25">25<span class="details">Detail in manner</span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPoz" onmouseenter="showIdOver(26)" id="26">26<span class="details"></span></td>
+    </tr>
+
+    <tr>
+      <td class="onPozLeft" onmouseenter="showIdOver(27)" id="27">27<span class="details"></span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPoz" onmouseenter="showIdOver(28)" id="28">28<span class="details"></span></td>
+    </tr>
+
+    <tr>
+      <td class="onPozLeft" onmouseenter="showIdOver(29)" id="29">29<span class="details"></span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPio" onmouseenter="showIdOver(30)" id="30">30<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(31)" id="31">31<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(32)" id="32">32<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(33)" id="33">33<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(34)" id="34">34<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(35)" id="35">35<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(36)" id="36">36<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(37)" id="37">37<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(38)" id="38">38<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(39)" id="39">39<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(40)" id="40">40<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(41)" id="41">41<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(42)" id="42">42<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(43)" id="43">43<span class="details"></span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPoz" onmouseenter="showIdOver(44)" id="44">44<span class="details"></span></td>
+    </tr>
+
+    <tr>
+      <td class="onPozLeft" onmouseenter="showIdOver(45)" id="45">45<span class="details"></span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPioUp" onmouseenter="showIdOver(46)" id="46">46<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(47)" id="47">47<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(48)" id="48">48<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(49)" id="49">49<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(50)" id="50">50<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(51)" id="51">51<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(52)" id="52">52<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(53)" id="53">53<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(54)" id="54">54<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(55)" id="55">55<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(56)" id="56">56<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(57)" id="57">57<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(58)" id="58">58<span class="details"></span></td>
+      <td class="onPioUp" onmouseenter="showIdOver(59)" id="59">59<span class="details"></span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPoz" onmouseenter="showIdOver(60)" id="60">60<span class="details"></span></td>
+    </tr>
+
+    <tr>
+      <td class="onPozLeft" onmouseenter="showIdOver(61)" id="61">61<span class="details"></span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPoz" onmouseenter="showIdOver(62)" id="62">62<span class="details"></span></td>
+    </tr>
+
+    <tr>
+      <td class="onPozLeft" onmouseenter="showIdOver(63)" id="63">63<span class="details"></span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPoz" onmouseenter="showIdOver(64)" id="64">64<span class="details"></span></td>
+    </tr>
+
+    <tr>
+      <td class="onPozLeft" onmouseenter="showIdOver(65)" id="65">65<span class="details"></span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPoz" onmouseenter="showIdOver(66)" id="66">66<span class="details"></span></td>
+    </tr>
+
+    <tr>
+      <td class="onPozLeft" onmouseenter="showIdOver(67)" id="67">67<span class="details"></span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="onPoz" onmouseenter="showIdOver(68)" id="68">68<span class="details"></span></td>
+    </tr>
+
+    <tr>
+      <td class="off"></td>
+      <td class="onPio" onmouseenter="showIdOver(69)" id="69">69<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(70)" id="70">70<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(71)" id="71">71<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(72)" id="72">72<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(73)" id="73">73<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(74)" id="74">74<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(75)" id="75">75<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(76)" id="76">76<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(77)" id="77">77<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(78)" id="78">78<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(79)" id="79">79<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(80)" id="80">80<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(81)" id="81">81<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(82)" id="82">82<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(83)" id="83">83<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(84)" id="84">84<span class="details"></span></td>
+      <td class="onPio" onmouseenter="showIdOver(85)" id="85">85<span class="details"></span></td>
+      <td class="off"></td>
+      <td class="off"></td>
+      <td class="off"></td>
+    </tr>
+
+    </tbody>
+  </table>
+
+  </div>
+    </div>
+
+    <div class="footer">
+      <p>....</p>
+    </div>
+  </div>
+</div>
+
+
+
+  </body>
+</html>

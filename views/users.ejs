@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <script>
+      function showIdOver(id){
+        fetch('/showIdOver/'+id)
+        .then(response => response.text())
+        .then(data => {
+          let td = document.getElementById(id);
+          let span = td.querySelector('span');
+          span.innerHTML = data;
+        })
+        .catch(error => console.error('Error:', error));
+      }
+
+      function sidebar_open(){
+        document.getElementById('sidebar').style.visibility='visible';
+      }
+
+      function sidebar_close(){
+        document.getElementById('sidebar').style.visibility='hidden';
+      }
+    </script>
+
+  <div class="site">
+
+    <div class="header">
+      <button class="sidebar_button_open" onclick="sidebar_open()">☰</button>
+      <img src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar">
+      <h3>Jan Kowalski</h3>
+    </div>
+    <div class="site_content">
+
+  <div class="sidebar" id="sidebar">
+    <button onclick="sidebar_close()" class="sidebar_button_close">Close &times;</button>
+    <br>
+    <a href="/" class="w3-bar-item">Strona główna</a>
+    <br>
+    <a href="/users" class="w3-bar-item">Użytkownicy</a>
+    <br>
+    <a href="#" class="w3-bar-item">Link 3</a>
+  </div>
+
+  <div class="table">
+    <table class="tg">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Imie</th>
+          <th>Nazwisko</th>
+          <th>Numer</th>
+          <th>Miejsce</th>
+          <th>Data ostatniej płatności</th>
+          <th>Data następnej płatności</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- userTable%>
+      </tbody>
+    </table>
+
+  </div>
+    </div>
+
+    <div class="footer">
+      <p>....</p>
+    </div>
+  </div>
+
+
+
+  </body>
+</html>
