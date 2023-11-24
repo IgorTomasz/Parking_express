@@ -7,13 +7,32 @@
   <body>
 
     <script>
+      
+      window.onload((saved)=>{
+          if(saved){
+            document.getElementById('saved').innerHTML = "<p>Saved!<p>";
+            document.getElementById('saved').style.visibility = 'visible';
+
+            setTimeout(()=>{
+              document.getElementById('saved').style.visibility = 'hidden';
+            },3000);
+          }
+      })
+
       function showIdOver(id){
-        fetch('/showIdOver/'+id)
+        fetch('/users/getMoreUserInfo/'+id)
         .then(response => response.text())
         .then(data => {
-          let td = document.getElementById(id);
-          let span = td.querySelector('span');
-          span.innerHTML = data;
+          let popup_window = document.getElementById('popup-window');
+          let popup_main = document.getElementById('popup-main');
+          let site = document.getElementById('site');
+          let body = document.getElementById('web');
+
+          popup_main.innerHTML = data;
+          popup_window.style.display = 'block';
+          popup_window.style.zIndex=2;
+          body.style.background = 'rgba(169, 169, 169, 0.8)';
+          site.style.opacity = 0.3;
         })
         .catch(error => console.error('Error:', error));
       }
@@ -25,9 +44,31 @@
       function sidebar_close(){
         document.getElementById('sidebar').style.visibility='hidden';
       }
-    </script>
 
-  <div class="site">
+      function closePopup(){
+        var popupWindow = document.getElementById("popup-window");
+        let site = document.getElementById('site');
+        site.style.opacity = 1;
+        popupWindow.style.display = "none";
+      }
+    </script>
+<div id="web">
+  <div id="saved" style="visibility:hidden;"></div>
+
+  <div id="popup-window">
+    <div class="popup-header">
+      <button id="close-button" onclick="closePopup()">✖</button>
+    </div>
+    <div id="popup-main">
+        <div id="loading-spinner">
+          <div class="spinner">
+  
+          </div>
+        </div>
+    </div>
+  </div> 
+
+  <div class="site" id="site">
 
     <div class="header">
       <button class="sidebar_button_open" onclick="sidebar_open()">☰</button>
@@ -71,7 +112,7 @@
       <p>....</p>
     </div>
   </div>
-
+</div>
 
 
   </body>

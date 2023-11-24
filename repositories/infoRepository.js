@@ -12,6 +12,7 @@ async function infoQuery(id){
   return person_data[0].dataValues;
 }
 
+
 module.exports = {
-    infoQuery
+    infoQuery,
   };

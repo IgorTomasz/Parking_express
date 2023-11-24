@@ -11,6 +11,12 @@ async function getUsersData(){
     return usersArray;
 }
 
+async function saveData(id, newData){
+    await userRepository.saveData(id, newData);
+}
+
+
 module.exports = {
-    getUsersData
+    getUsersData,
+    saveData
 }

@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes  } = require('sequelize');
 
-const sequelize = new Sequelize('MechApp', 'sa', 'igorigor', {
+const sequelize = new Sequelize('Parking', 'sa', 'password', {
     host: 'IGORPC',
     dialect:  'mssql',
     pool:{
