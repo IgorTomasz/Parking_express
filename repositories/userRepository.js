@@ -1,12 +1,12 @@
-const Person = require('../models/Person');
+const DbModels = require('../models/DbModels');
 
 async function userQuery(id){
-  users_data = await Person.findAll();
+  users_data = await DbModels.Person.findAll();
   return users_data;
 }
 
 async function saveData(id, newData){
-  await Person.update({ imie: newData.imie, nazwisko: newData.nazwisko, numer_telefonu: newData.telefon},{
+  await DbModels.Person.update({ imie: newData.imie, nazwisko: newData.nazwisko, numer_telefonu: newData.telefon},{
     where:{
       id: id
     }

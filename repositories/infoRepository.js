@@ -1,9 +1,9 @@
-const Person = require('../models/Person');
+const DbModels = require('../models/DbModels');
 
 async function infoQuery(id){
-  person_data = await Person.findAll({
+  person_data = await DbModels.Person.findAll({
     where:{
-      miejsce_parkingowe: id
+      parking_spot: id
     }
   })
 
