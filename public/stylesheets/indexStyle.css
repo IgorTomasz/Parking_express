@@ -1,0 +1,275 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: gainsboro;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+#popup-window {
+  position: fixed;
+  width: 30vw;
+  height: 25vh;
+  background: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  display: none;
+  transform: translate(-50%, -50%);
+}
+
+#close-button{
+  width: 5vw;
+  height: 3vh;
+  background: none;
+  border: none;
+  font-size: larger;
+  text-align: right;
+  cursor: pointer;
+}
+
+.popup-header{
+  height: 25%;
+}
+
+.popup-header>button{
+  float: right;
+}
+
+.popup-main{
+  height: 75%;
+}
+
+.header{
+  width: 100%;
+  height: 10vh;
+  background-color: gainsboro;
+}
+
+.header > img{
+  width: 5%;
+  float: right;
+}
+
+.header > h3{
+  float: right;
+}
+
+.header > select{
+  float: left;
+  width: 10vw;
+}
+
+.site_content{
+  display: flex;
+}
+
+.footer{
+  width: 100%;
+  height: 5vh;
+}
+
+.site{
+  background-color: gainsboro;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar_button_open{
+  width: 5%;
+  height: 15%;
+  font-size: 45px;
+  float: left;
+  background: none;
+  border: none;
+}
+
+.w3-bar-item{
+  padding-top: 3vh;
+  width: 8vw;
+  height: 5vh;
+  border:none;
+  display:block;
+  outline:0;
+  text-decoration: none;
+  background: gainsboro;
+  color: black;
+  text-align: center;
+  line-height: normal;
+}
+
+.w3-bar-item:hover{
+  background: #989599;
+}
+
+.sidebar_button_close{
+  width: 8vw;
+  height: 5vh;
+  background: none;
+  color: black;
+  text-align: center;
+  vertical-align: center;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid black;
+}
+
+.sidebar_button_close:hover{
+  cursor: pointer;
+}
+
+.sidebar{
+  width: 8vw;
+  height: 100vh;
+  background-color: gainsboro;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 20;
+  margin-right: 10px;
+  border-right: 2px solid black;
+}
+
+
+.table{
+  width: 92vw;
+  background-color: gainsboro;
+  justify-content: right;
+  margin-left: auto;
+  height: calc(100vh - 15vh);
+}
+
+.tg{
+  border: 2px solid black;
+  height: max-content;
+  width: 90vw;
+  text-align: center;
+}
+
+td{
+  border: 1px solid black;
+}
+
+.off{
+  visibility: hidden;
+  border: none;
+}
+
+
+
+.details{
+  position: absolute;
+  top: 0;
+  transform: translateY(-70%) scale(0);
+  transition: 0.5s;
+  transform-origin: left;
+  display: inline;
+  background: white;
+  z-index: 1;
+  min-width: max-content;
+  width: 100%;
+  height: 13vh;
+  padding: 1rem;
+  border: 1px solid black;
+  text-align: left;
+}
+
+.details > p {
+  line-height: 2;
+}
+
+.details > button {
+  text-align: right;
+  text-decoration: none;
+  color: black;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.details > a:visited {
+  color: black;
+}
+
+.onPio{
+  background-color: rgb(67, 118, 212);
+  width: 4%;
+  line-height: 400%;
+  position: relative;
+}
+
+.offShow{
+  visibility: hidden;
+  border: none;
+  width: 4%;
+  line-height: 400%;
+  position: relative;
+}
+
+.onPioUp{
+  background-color: rgb(67, 118, 212);
+  width: 4%;
+  line-height: 400%;
+  position: relative;
+}
+
+.onPoz{
+  background-color: rgb(67, 118, 212);
+  line-height: 400%;
+  width: 4%;
+  position: relative;
+}
+
+.onPozLeft{
+  background-color: rgb(67, 118, 212);
+  line-height: 400%;
+  width: 4%;
+  position: relative;
+}
+
+.onPio:hover span{
+  background-color: rgb(83, 83, 83);
+  transform: translateY(-100%) scale(1);
+
+}
+
+.onPioUp:hover span{
+  background-color: rgb(83, 83, 83);
+  transform: translateY(36%) scale(1);
+
+}
+
+.onPoz:hover span{
+  background-color: rgb(83, 83, 83);
+  transform: translateX(-118%) scale(1);
+}
+
+.onPozLeft:hover span{
+  background-color: rgb(83, 83, 83);
+  transform: translateX(11%) scale(1);
+}
+
+.onPio:hover{
+  background-color: rgb(83, 83, 83);
+}
+
+.onPioUp:hover{
+  background-color: rgb(83, 83, 83);
+}
+
+.onPoz:hover{
+  background-color: rgb(83, 83, 83);
+}
+
+.onPozLeft:hover{
+  background-color: rgb(83, 83, 83);
+}
+

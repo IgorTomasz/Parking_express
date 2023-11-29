@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/indexStyle.css' />
   </head>
   <body>
 
@@ -18,10 +18,10 @@
 
   <div class="table">
     <form action="/rejestracja" method="post">
-        <p>Imię: <input type="text" name="first_name"></p>
-        <p>Nazwisko: <input type="text" name="last_name"></p>
-        <p>Email: <input type="text" name="email"></p>
-        <p>Hasło: <input type="password" name="password"></p>
+        <p>Imię: <input type="text" name="first_name" required></p>
+        <p>Nazwisko: <input type="text" name="last_name" required></p>
+        <p>Email: <input type="text" name="email" required></p>
+        <p>Hasło: <input type="password" name="password" required></p>
         <button type="submit">Zarejestruj</button>
     </form>
 

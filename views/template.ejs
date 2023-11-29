@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/indexStyle.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
 
@@ -17,8 +17,8 @@
     <div class="site_content">
 
   <div class="table">
-    <form action="/" method="post">
-        <p>Email: <input type="email" name="email" required></p>
+    <form action="/logowanie" method="post">
+        <p>Email: <input type="text" name="email" required></p>
         <p>Hasło: <input type="password" name="password" required></p>
         <button type="submit">Zaloguj</button>
     </form>

@@ -1,9 +1,12 @@
 const jwt = require("jsonwebtoken");
+const authService = require('../services/authenticationService');
+
 
 const config = process.env;
 
 const verifyToken = (req, res, next) => {
   const token = req.cookies.access_token;
+
 
   if (!token) {
     return res.status(403).send("A token is required for authentication");
@@ -17,4 +20,21 @@ const verifyToken = (req, res, next) => {
   return next();
 };
 
-module.exports = verifyToken;
+const checkRole = (roles) => async (req, res, next) => {
+  const token = req.cookies.access_token;
+
+  //retrieve employee info from DB
+  const employee = await authService.getCurrentUser(token);
+
+    if(!roles.includes(employee.role)){
+      return res.status(401).send("Nie masz uprawnień do edytowania danych.");
+    }else{
+      return next();
+    }
+};
+
+
+module.exports = {
+  verifyToken,
+  checkRole
+}

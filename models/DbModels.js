@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes  } = require('sequelize');
 require("dotenv").config();
 
+
 const { CONFIG } = process.env;
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
@@ -17,27 +18,27 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 const Person = sequelize.define('Person',{
     first_name:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     last_name:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     phone:{
-        type: DataTypes.NUMBER,
-        allowNull: false
+        type: DataTypes.INTEGER,
+        allowNull: true
     },
     parking_spot: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     last_payment: {
-        type: DataTypes.DATE,
-        allowNull: false
+        type: DataTypes.DATEONLY,
+        allowNull: true
     },
     next_payment:{
-        type: DataTypes.DATE,
-        allowNull: false
+        type: DataTypes.DATEONLY,
+        allowNull: true
     }
 },{
     tableName: 'Najemcy',
@@ -67,6 +68,10 @@ const userSchema = sequelize.define('userSchema',{
         allowNull: false
     },
     token:{
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    role:{
         type: DataTypes.STRING,
         allowNull: true
     }

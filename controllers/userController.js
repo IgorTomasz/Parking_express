@@ -4,27 +4,42 @@ const authService = require('../services/authenticationService');
 const moment = require('moment');
 
 async function getUsers(req, res){
-    const users = await userService.getUsersData();
+    const page = req.params.page-1;
+    const users = await userService.getUsersData(page);
+    const count = await userService.countUsers();
+    const pages = Math.round(count/15);
     let response = '';
+    let pagesButtons = '';
 
     const currentUser = await authService.getCurrentUser(req.cookies.access_token);
-    const names = currentUser.first_name + ' ' + currentUser.last_name;
+    const names = '<a href=\"/users/ustawienia\">'+currentUser.first_name + ' ' + currentUser.last_name+'</a>';
 
     
     for(let i = 0; i<users.length;i++){
         
         response += `<tr onclick=\"showIdOver(${users[i].id})\">
-                        <td>${users[i].id}</td>
-                        <td>${users[i].first_name}</td>
-                        <td>${users[i].last_name}</td>
-                        <td>${users[i].phone}</td>
                         <td>${users[i].parking_spot}</td>
-                        <td>${users[i].last_payment}</td>
-                        <td>${users[i].next_payment}</td>
+                        <td>${users[i].first_name === null ? "" : users[i].first_name}</td>
+                        <td>${users[i].last_name === null ? "" : users[i].last_name}</td>
+                        <td>${users[i].phone === null ? "" : users[i].phone}</td>
+                        <td>${users[i].last_payment === null ? "" : moment(new Date(users[i].last_payment)).format('DD-MM-YYYY')}</td>
+                        <td>${users[i].next_payment === null ? "" : moment(new Date(users[i].next_payment)).format('DD-MM-YYYY')}</td>
                     </tr>`;
         
     }
-    res.render('users',{title: 'Najemcy', userTable: response, names: names} );
+
+    for(let i = 1; i<=pages; i++){
+        pagesButtons += `<a href=\"/users/${i}\">${i}</a>`
+    }
+    res.render('users',{title: 'Najemcy', userTable: response, names: names, pages: pagesButtons} );
+
+}
+
+async function getSettings(req, res){
+    const currentUser = await authService.getCurrentUser(req.cookies.access_token);
+    const names = '<a href=\"/ustawienia\">'+currentUser.first_name + ' ' + currentUser.last_name+'</a>';
+
+    res.render('userSettings', {title: 'Ustawienia', names:names});
 
 }
 
@@ -39,23 +54,24 @@ async function saveData(req, res){
 
     await userService.saveData(id, newData);
 
-    const users = await userService.getUsersData();
-    let response = '';
-    for(let i = 0; i<users.length;i++){
+    // const users = await userService.getUsersData();
+    // let response = '';
+    // for(let i = 0; i<users.length;i++){
         
-        response += `<tr onclick=\"showIdOver(${users[i].id})\">
-                        <td>${users[i].id}</td>
-                        <td>${users[i].first_name}</td>
-                        <td>${users[i].last_name}</td>
-                        <td>${users[i].phone}</td>
-                        <td>${users[i].parking_spot}</td>
-                        <td>${users[i].last_payment}</td>
-                        <td>${users[i].next_payment}</td>
-                    </tr>`;
+    //     response += `<tr onclick=\"showIdOver(${users[i].id})\">
+    //                     <td>${users[i].id}</td>
+    //                     <td>${users[i].first_name}</td>
+    //                     <td>${users[i].last_name}</td>
+    //                     <td>${users[i].phone}</td>
+    //                     <td>${users[i].parking_spot}</td>
+    //                     <td>${users[i].last_payment}</td>
+    //                     <td>${users[i].next_payment}</td>
+    //                 </tr>`;
         
-    }
+    // }
 
-    res.redirect('/users');
+    res.redirect('/users')
+    //getUsers(res,req);
 
     //dać informacje, że dane zostały zapisane
 }
@@ -78,5 +94,6 @@ async function getMoreUserInfo (req, res) {
 module.exports = {
     getUsers,
     getMoreUserInfo,
-    saveData
+    saveData,
+    getSettings
 }

@@ -4,20 +4,22 @@ const infoController = require('../controllers/infoController')
 const authController = require('../controllers/authenticationController');
 const authMiddleware = require('../middleware/auth');
 
-router.get('/rejestracja', authController.registerGet);
+router.get('/rejestracja', authMiddleware.verifyToken, authMiddleware.checkRole(["admin"]), authController.registerGet);
 
-router.post('/rejestracja', authController.registerPost);
+router.post('/rejestracja', authMiddleware.verifyToken, authMiddleware.checkRole(["admin"]), authController.registerPost);
 
-router.post('/logowanie', authController.loginPost);
+router.post('/', authController.loginPost);
 
-router.get('/logowanie', authController.loginGet);
+router.get('/', authController.loginGet);
 
 /* GET home page. */
-router.get('/stronaglowna', authMiddleware, infoController.getIndex);
+router.get('/getParking/:side', authMiddleware.verifyToken, authMiddleware.checkRole(["admin","client"]), infoController.getParkingSide);
 
-router.get('/showIdOver/:id', authMiddleware, infoController.getInfo);
+router.get('/stronaglowna', authMiddleware.verifyToken, authMiddleware.checkRole(["admin","client"]), infoController.getIndex);
 
-router.get('/showMoreInfo/:id', authMiddleware, infoController.getMoreInfo);
+router.get('/showIdOver/:id', authMiddleware.verifyToken, authMiddleware.checkRole(["admin","client"]), infoController.getInfo);
+
+router.get('/showMoreInfo/:id', authMiddleware.verifyToken, authMiddleware.checkRole(["admin","client"]), infoController.getMoreInfo);
 
 
 module.exports = router;

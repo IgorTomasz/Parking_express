@@ -2,40 +2,11 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/usersStyle.css' />
+    <link rel='stylesheet' href='/stylesheets/indexStyle.css' />
   </head>
   <body>
 
     <script>
-      
-      // window.onload((saved)=>{
-      //     if(saved){
-      //       document.getElementById('saved').innerHTML = "<p>Saved!<p>";
-      //       document.getElementById('saved').style.visibility = 'visible';
-
-      //       setTimeout(()=>{
-      //         document.getElementById('saved').style.visibility = 'hidden';
-      //       },3000);
-      //     }
-      // })
-
-      function showIdOver(id){
-        fetch('/users/getMoreUserInfo/'+id)
-        .then(response => response.text())
-        .then(data => {
-          let popup_window = document.getElementById('popup-window');
-          let popup_main = document.getElementById('popup-main');
-          let site = document.getElementById('site');
-          let body = document.getElementById('web');
-
-          popup_main.innerHTML = data;
-          popup_window.style.display = 'block';
-          popup_window.style.zIndex=2;
-          body.style.background = 'rgba(169, 169, 169, 0.8)';
-          site.style.opacity = 0.3;
-        })
-        .catch(error => console.error('Error:', error));
-      }
 
       function sidebar_open(){
         document.getElementById('sidebar').style.visibility='visible';
@@ -87,28 +58,14 @@
     <a href="/ustawienia" class="w3-bar-item">Ustawienia konta</a>
   </div>
 
-  <div class="table_div">
-    <table class="tg">
-      <thead>
-        <tr>
-          <th>Miejsce</th>
-          <th>Imie</th>
-          <th>Nazwisko</th>
-          <th>Numer</th>
-          <th>Data ostatniej płatności</th>
-          <th>Data następnej płatności</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%- userTable%>
-      </tbody>
-    </table>
+  <div class="table">
+    
 
   </div>
     </div>
 
     <div class="footer">
-      <%- pages%>
+      <p>....</p>
     </div>
   </div>
 </div>

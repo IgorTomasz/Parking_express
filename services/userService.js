@@ -1,7 +1,7 @@
 const userRepository = require('../repositories/userRepository');
 
-async function getUsersData(){
-    const users = await userRepository.userQuery();
+async function getUsersData(page){
+    const users = await userRepository.userQuery(page);
     
     let usersArray = [];
     for(let i = 0; i<users.length; i++){
@@ -15,8 +15,13 @@ async function saveData(id, newData){
     await userRepository.saveData(id, newData);
 }
 
+async function countUsers(){
+    return await userRepository.countUsers();
+}
+
 
 module.exports = {
     getUsersData,
-    saveData
+    saveData,
+    countUsers
 }

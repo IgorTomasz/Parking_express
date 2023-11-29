@@ -1,12 +1,19 @@
 const DbModels = require('../models/DbModels');
 
-async function userQuery(id){
-  users_data = await DbModels.Person.findAll();
+async function userQuery(page){
+  users_data = await DbModels.Person.findAll({
+    offset: page*15,
+    limit: 15,
+  });
   return users_data;
 }
 
+async function countUsers(){
+  return await DbModels.Person.count();
+}
+
 async function saveData(id, newData){
-  await DbModels.Person.update({ imie: newData.imie, nazwisko: newData.nazwisko, numer_telefonu: newData.telefon},{
+  await DbModels.Person.update({ first_name: newData.imie, last_name: newData.nazwisko, phone: newData.telefon},{
     where:{
       id: id
     }
@@ -15,5 +22,6 @@ async function saveData(id, newData){
 
 module.exports = {
     userQuery,
-    saveData
+    saveData,
+    countUsers
   };

@@ -1,4 +1,4 @@
-const { where } = require('sequelize');
+const { where, ENUM } = require('sequelize');
 const DbModels = require('../models/DbModels');
 
 async function getOldUser(email){
@@ -34,7 +34,8 @@ async function addUser(user){
         last_name: user.last_name,
         email: user.email,
         password: user.password,
-        salt: user.salt
+        salt: user.salt,
+        role: "client"
     });
 }
 

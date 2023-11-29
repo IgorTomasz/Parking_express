@@ -18,7 +18,7 @@ async function registerPost(req, res){
         return res.status(409).send("Użytkownik o podanym email już istnieje.");
     }
 
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(12);
     const hashedPassword = await bcrypt.hash(password, salt);
     const user = await authService.addUser({
         first_name: first_name,
@@ -28,13 +28,14 @@ async function registerPost(req, res){
         salt: salt
     });
 
-    res.redirect('/logowanie');
+    res.redirect('/');
 
     }catch(err){
         console.log(err);
     }
     
 }
+
 
 async function loginPost(req, res){
 
@@ -58,7 +59,8 @@ async function loginPost(req, res){
         res.cookie("access_token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-        }).redirect('/stronaglowna');
+        });
+        res.redirect('/stronaglowna');
     }
 
     res.status(400).send("Niepoprawne dane logowania.");
